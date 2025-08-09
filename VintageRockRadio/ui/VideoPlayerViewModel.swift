@@ -35,6 +35,8 @@ class VideoPlayerViewModel: ObservableObject {
         case .updateTotalDuration(let durationSeconds):
             if state.songs.isEmpty { return }
             state.totalDurationSeconds = durationSeconds
+        case .onPlayerError(let errorCode):
+            handlePlayerError(errorCode)
         case .onError(let error):
             state.error = error
             state.isLoading = false
@@ -93,5 +95,29 @@ class VideoPlayerViewModel: ObservableObject {
         state.currentDecade = decade
         loadSongs(decade: decade)
         state.isPrevButtonEnabled = false
+    }
+
+    private func handlePlayerError(_ errorCode: Int) {
+        let errorMessage: String
+        switch errorCode {
+        case 2:
+            errorMessage = "Player Error: Invalid video ID."
+        case 5:
+            errorMessage = "Player Error: HTML5 Player issue."
+        case 100:
+            errorMessage = "Video not found or private."
+        case 101, 150:
+            errorMessage = "Playback restricted by owner."
+        default:
+            errorMessage = "An unknown player error occurred."
+        }
+        state.error = errorMessage
+
+        // Skip to the next song after a short delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if self.state.error == errorMessage { // Only skip if the error is still the same
+                self.goToNextSong()
+            }
+        }
     }
 }

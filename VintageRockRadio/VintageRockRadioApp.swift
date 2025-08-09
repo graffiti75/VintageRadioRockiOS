@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct VintageRockRadioApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             VideoPlayerView()

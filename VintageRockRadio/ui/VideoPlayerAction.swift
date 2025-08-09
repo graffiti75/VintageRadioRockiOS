@@ -8,6 +8,7 @@ enum VideoPlayerAction {
     case seekTo(Double)
     case updatePlaybackTime(Double)
     case updateTotalDuration(Double)
+    case onPlayerError(Int)
     case onError(String)
     case dismissError
     case changeDecade(String)

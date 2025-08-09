@@ -29,7 +29,8 @@
             player = new YT.Player('player', {
                 events: {
                     'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
                 }
             });
         }
@@ -50,6 +51,13 @@
                     });
                 }, 1000);
             }
+        }
+
+        function onPlayerError(event) {
+            window.webkit.messageHandlers.playbackHandler.postMessage({
+                type: 'error',
+                errorCode: event.data
+            });
         }
 
         function loadVideo(videoId) {

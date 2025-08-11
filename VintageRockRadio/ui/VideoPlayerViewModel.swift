@@ -62,6 +62,7 @@ class VideoPlayerViewModel: ObservableObject {
                 newState.currentPlaybackTimeSeconds = 0
                 newState.totalDurationSeconds = 0
                 newState.error = nil
+                newState.isPlaying = true
                 self.state = newState
             } else {
                 var newState = self.state

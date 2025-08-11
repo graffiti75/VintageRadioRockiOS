@@ -51,6 +51,9 @@ struct DecadeSlider: View {
                         Text(decade)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
+                            .onTapGesture {
+                                selectedDecade = decade
+                            }
                     }
                 }
             }

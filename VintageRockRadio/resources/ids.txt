@@ -1475,10 +1475,10 @@
 90;1989;The Rolling Stones;Almost Hear You Sigh;51I1Fl7qhHw
 90;1991;The Rolling Stones;Highwire;7sb3WklF-FU
 90;1995;The Rolling Stones;You Got Me Rocking;5_vbbD9Szj8
-90;1995;The Smashing Pumpkings;1979;4aeETEoNfOg
-90;1993;The Smashing Pumpkings;Mayonaise;MElfYleGIVU
-90;1993;The Smashing Pumpkings;Today;xmUZ6nCFNoU
-90;1995;The Smashing Pumpkings;Tonight, Tonight;NOG3eus4ZSo
+90;1995;The Smashing Pumpkins;1979;4aeETEoNfOg
+90;1993;The Smashing Pumpkins;Mayonaise;MElfYleGIVU
+90;1993;The Smashing Pumpkins;Today;xmUZ6nCFNoU
+90;1995;The Smashing Pumpkins;Tonight, Tonight;NOG3eus4ZSo
 90;1997;The Verve;Bittersweet Symphony;1lyu1KKwC74
 90;1996;The Wallflowers;One Headlight;Zzyfcys1aLM
 90;1997;Third Eye Blind;Semi Charmed Life;beINamVRGy4

@@ -30,7 +30,7 @@ struct DecadeSlider: View {
                                 }
                                 .onEnded { value in
                                     let segmentWidth = geometry.size.width / CGFloat(decades.count)
-                                    let index = Int(round(offset / segmentWidth))
+                                    let index = Int(offset / segmentWidth)
                                         .clamped(to: 0...decades.count - 1)
 
                                     let newOffset = segmentWidth * CGFloat(index) + segmentWidth / 2
@@ -69,7 +69,7 @@ struct DecadeSlider: View {
     private func updateOffset(width: CGFloat) {
         let segmentWidth = width / CGFloat(decades.count)
         if let index = decades.firstIndex(of: selectedDecade) {
-            let newOffset = segmentWidth * CGFloat(index) + segmentWidth / 2
+            let newOffset = segmentWidth * CGFloat(index) + (segmentWidth / 2)
             offset = newOffset
             lastOffset = newOffset
         }

@@ -1,5 +1,13 @@
 # Vintage Radio App (iOS)
 
+## Showcase
+
+<img src="videos/video.gif" alt="Sample Video">
+
+| Black Sabbath - 1970 - N.I.B. | The Police - 1978 - Roxanne | 
+|---------|---------|
+| <img src="images/black_sabbath_1970_n.i.b..png" alt="Sample Video" width="414" height="859"> | <img src="images/the_police_1978_roxanne.png" alt="Sample Video" width="414" height="859"> |
+
 ## Description
 
 Welcome to the Vintage Radio App for iOS! This application brings you a curated collection of classic hits from the 50s, 60s, 70s, 80s, 90s, and 2000s. Experience a nostalgic journey through music with a custom-themed UI that simulates a vintage radio player. The app streams music directly from YouTube.
@@ -12,32 +20,6 @@ Welcome to the Vintage Radio App for iOS! This application brings you a curated 
 - **YouTube Integration:** Leverages the YouTube IFrame Player API to stream video content.
 - **Robust Error Handling:** The player automatically detects unavailable videos and skips to the next song.
 - **Built with SwiftUI:** A modern, declarative UI framework for building iOS apps.
-
-## How to Build and Run
-
-Since this project was developed in an environment without direct Xcode access, the `.xcodeproj` project file is not included. To run this application, you will need to create a new Xcode project and add the provided source files.
-
-**Prerequisites:**
-- A Mac computer with the latest version of Xcode installed.
-
-**Steps:**
-
-1.  **Create a New Xcode Project:**
-    - Open Xcode and select `File > New > Project...`.
-    - Choose the **iOS App** template.
-    - Name the product `VintageRadioApp`, select **SwiftUI** for the Interface, and **Swift** for the Language.
-    - Save the project to your desired location.
-
-2.  **Add Source and Resource Files:**
-    - In the Xcode Project Navigator (the left-hand panel), right-click on the main project folder and select **"Add Files to 'VintageRadioApp'..."**.
-    - Navigate to the `VintageRadioApp` directory containing the source code.
-    - Select all the `.swift` files and the `resources` directory (`ids.txt` and `youtube_player.html`).
-    - **Important:** In the options dialog, ensure that **"Copy items if needed"** is checked and that your app's target is selected in the **"Add to targets"** list. This is crucial for the resource files to be included in the app bundle.
-    - Click **Add**.
-
-3.  **Run the App:**
-    - At the top of the Xcode window, select an iOS Simulator (e.g., "iPhone 15 Pro") as the run destination.
-    - Click the **Run** button (the play icon) or press `Cmd + R`.
 
 ## Project Structure
 

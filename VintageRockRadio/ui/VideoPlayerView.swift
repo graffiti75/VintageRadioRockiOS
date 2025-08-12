@@ -15,9 +15,7 @@ struct VideoPlayerView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // NOTE TO USER: Replace "background" with your actual background image asset name.
-                // A dark, vintage-style background image would work best.
-                Color.black.edgesIgnoringSafeArea(.all) // Placeholder background
+                Color.black.edgesIgnoringSafeArea(.all)
 
                 VStack(spacing: 0) {
                     // Top Section
@@ -29,6 +27,10 @@ struct VideoPlayerView: View {
                                               isPlaying: viewModel.state.isPlaying,
                                               seekTo: viewModel.state.currentPlaybackTimeSeconds,
                                               viewModel: viewModel)
+
+                                // Transparent overlay to block user interaction
+                                Color.clear
+                                    .contentShape(Rectangle())
 
                                 if let error = viewModel.state.error {
                                     Text(error)
@@ -46,7 +48,7 @@ struct VideoPlayerView: View {
                         .frame(width: geometry.size.width * 0.6)
                         .padding()
 
-                        // Right Side: Song Info
+                        // Right Side: Song Info and Controls
                         VStack {
                             if let song = viewModel.state.currentSong {
                                 SongDetailsView(song: song)
@@ -59,7 +61,7 @@ struct VideoPlayerView: View {
                                     Image(systemName: "backward.fill")
                                         .resizable()
                                         .frame(width: 30, height: 30)
-                                        .foregroundColor(viewModel.state.isPrevButtonEnabled ? .white : .gray)
+                                        .foregroundColor(.white)
                                 }
                                 .disabled(!viewModel.state.isPrevButtonEnabled)
 
@@ -74,9 +76,8 @@ struct VideoPlayerView: View {
                                     Image(systemName: "forward.fill")
                                         .resizable()
                                         .frame(width: 30, height: 30)
-                                        .foregroundColor(viewModel.state.songs.count > 1 ? .white : .gray)
+                                        .foregroundColor(.white)
                                 }
-                                .disabled(viewModel.state.songs.count <= 1)
                             }
                             .padding(.bottom, 20)
                         }

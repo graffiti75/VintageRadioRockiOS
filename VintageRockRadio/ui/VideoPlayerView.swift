@@ -89,20 +89,27 @@ struct VideoPlayerView: View {
                             .frame(height: 50)
                             .padding(.horizontal)
 
-                        CustomProgressSlider(
-                            value: $sliderValue,
-                            range: 0...(viewModel.state.totalDurationSeconds > 0 ? viewModel.state.totalDurationSeconds : 1),
-                            onEditingChanged: { isEditing in
-                                isInteractingWithSlider = isEditing
-                            },
-                            onSeek: { newValue in
-                                viewModel.onAction(.seekTo(newValue))
+                        HStack {
+                            CustomProgressSlider(
+                                value: $sliderValue,
+                                range: 0...(viewModel.state.totalDurationSeconds > 0 ? viewModel.state.totalDurationSeconds : 1),
+                                onEditingChanged: { isEditing in
+                                    isInteractingWithSlider = isEditing
+                                },
+                                onSeek: { newValue in
+                                    viewModel.onAction(.seekTo(newValue))
+                                }
+                            )
+                            .onReceive(viewModel.$state) { state in
+                                if !isInteractingWithSlider {
+                                    sliderValue = state.currentPlaybackTimeSeconds
+                                }
                             }
-                        )
-                        .onReceive(viewModel.$state) { state in
-                            if !isInteractingWithSlider {
-                                sliderValue = state.currentPlaybackTimeSeconds
-                            }
+
+                            Text("\(formatTime(seconds: sliderValue)) / \(formatTime(seconds: viewModel.state.totalDurationSeconds))")
+                                .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                                .frame(width: 100)
                         }
                         .padding(.horizontal)
                     }
@@ -111,6 +118,13 @@ struct VideoPlayerView: View {
                 }
             }
         }
+    }
+
+    private func formatTime(seconds: Double) -> String {
+        let totalSeconds = Int(seconds)
+        let minutes = totalSeconds / 60
+        let remainingSeconds = totalSeconds % 60
+        return String(format: "%d:%02d", minutes, remainingSeconds)
     }
 }
 

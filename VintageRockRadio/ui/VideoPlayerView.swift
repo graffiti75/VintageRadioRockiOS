@@ -59,7 +59,7 @@ struct VideoPlayerView: View {
                                     Image(systemName: "backward.fill")
                                         .resizable()
                                         .frame(width: 30, height: 30)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(viewModel.state.isPrevButtonEnabled ? .white : .gray)
                                 }
                                 .disabled(!viewModel.state.isPrevButtonEnabled)
 
@@ -74,8 +74,9 @@ struct VideoPlayerView: View {
                                     Image(systemName: "forward.fill")
                                         .resizable()
                                         .frame(width: 30, height: 30)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(viewModel.state.songs.count > 1 ? .white : .gray)
                                 }
+                                .disabled(viewModel.state.songs.count <= 1)
                             }
                             .padding(.bottom, 20)
                         }

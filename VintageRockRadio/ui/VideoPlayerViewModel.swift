@@ -77,6 +77,7 @@ class VideoPlayerViewModel: ObservableObject {
                 newState.totalDurationSeconds = 0
                 newState.error = nil
                 newState.isPlaying = true
+                newState.isPrevButtonEnabled = false
                 self.state = newState
                 if let firstSong = shuffledSongs.first {
                     commandPublisher.send(.load(videoID: firstSong.youtubeID))
@@ -104,12 +105,17 @@ class VideoPlayerViewModel: ObservableObject {
     }
 
     private func goToPreviousSong() {
-        let prevIndex = (state.currentSongIndex - 1 + state.songs.count) % state.songs.count
+        guard state.currentSongIndex > 0 else { return } // Should not be callable if already at the start, but as a safeguard.
+
+        let prevIndex = state.currentSongIndex - 1
         state.currentSongIndex = prevIndex
         state.currentPlaybackTimeSeconds = 0
         state.totalDurationSeconds = 0
         state.isPlaying = true
-        state.isPrevButtonEnabled = true
+
+        // Disable the 'Previous' button if we are now at the very first song.
+        state.isPrevButtonEnabled = (prevIndex > 0)
+
         if let newSong = state.currentSong {
             commandPublisher.send(.load(videoID: newSong.youtubeID))
         }
@@ -118,7 +124,6 @@ class VideoPlayerViewModel: ObservableObject {
     private func handleChangeDecade(decade: String) {
         state.currentDecade = decade
         loadSongs(decade: decade)
-        state.isPrevButtonEnabled = false
     }
 
     private func handlePlayerError(_ errorCode: Int) {

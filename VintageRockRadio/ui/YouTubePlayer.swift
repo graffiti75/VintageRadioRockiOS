@@ -18,6 +18,7 @@ struct YouTubePlayer: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.defaultWebpagePreferences.preferredContentMode = .mobile
         let userContentController = WKUserContentController()
         userContentController.add(context.coordinator, name: "playbackHandler")
         webConfiguration.userContentController = userContentController

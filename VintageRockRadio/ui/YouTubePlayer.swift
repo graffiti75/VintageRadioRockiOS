@@ -116,8 +116,10 @@ struct YouTubePlayer: UIViewRepresentable {
                         switch state {
                         case .playing:
                             self.viewModel.onAction(.setPlaying(true))
-                        case .paused, .ended:
+                        case .paused:
                             self.viewModel.onAction(.setPlaying(false))
+                        case .ended:
+                            self.viewModel.onAction(.nextSong)
                         default:
                             break // Do nothing for buffering, cued, etc.
                         }

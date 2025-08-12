@@ -24,8 +24,6 @@ struct VideoPlayerView: View {
                         ZStack {
                             if let song = viewModel.state.currentSong {
                                 YouTubePlayer(videoID: song.youtubeID,
-                                              isPlaying: viewModel.state.isPlaying,
-                                              seekTo: viewModel.state.currentPlaybackTimeSeconds,
                                               viewModel: viewModel)
 
                                 // Transparent overlay to block user interaction

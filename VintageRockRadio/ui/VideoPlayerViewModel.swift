@@ -1,8 +1,16 @@
 import Foundation
 import Combine
 
+enum PlayerCommand {
+    case load(videoID: String)
+    case play
+    case pause
+    case seek(to: Double)
+}
+
 class VideoPlayerViewModel: ObservableObject {
     @Published private(set) var state = VideoPlayerState()
+    let commandPublisher = PassthroughSubject<PlayerCommand, Never>()
 
     private let songParser = SongParser()
 
@@ -15,6 +23,11 @@ class VideoPlayerViewModel: ObservableObject {
         case .playPause:
             if state.songs.isEmpty { return }
             state.isPlaying.toggle()
+            if state.isPlaying {
+                commandPublisher.send(.play)
+            } else {
+                commandPublisher.send(.pause)
+            }
         case .setPlaying(let playing):
             if state.songs.isEmpty { return }
             if state.isPlaying != playing {
@@ -29,6 +42,7 @@ class VideoPlayerViewModel: ObservableObject {
         case .seekTo(let positionSeconds):
             if state.songs.isEmpty { return }
             state.currentPlaybackTimeSeconds = positionSeconds
+            commandPublisher.send(.seek(to: positionSeconds))
         case .updatePlaybackTime(let timeSeconds):
             if state.songs.isEmpty { return }
             state.currentPlaybackTimeSeconds = timeSeconds
@@ -64,6 +78,9 @@ class VideoPlayerViewModel: ObservableObject {
                 newState.error = nil
                 newState.isPlaying = true
                 self.state = newState
+                if let firstSong = shuffledSongs.first {
+                    commandPublisher.send(.load(videoID: firstSong.youtubeID))
+                }
             } else {
                 var newState = self.state
                 newState.isLoading = false
@@ -81,6 +98,9 @@ class VideoPlayerViewModel: ObservableObject {
         state.isPlaying = true
         state.error = nil
         state.isPrevButtonEnabled = true
+        if let newSong = state.currentSong {
+            commandPublisher.send(.load(videoID: newSong.youtubeID))
+        }
     }
 
     private func goToPreviousSong() {
@@ -90,6 +110,9 @@ class VideoPlayerViewModel: ObservableObject {
         state.totalDurationSeconds = 0
         state.isPlaying = true
         state.isPrevButtonEnabled = true
+        if let newSong = state.currentSong {
+            commandPublisher.send(.load(videoID: newSong.youtubeID))
+        }
     }
 
     private func handleChangeDecade(decade: String) {

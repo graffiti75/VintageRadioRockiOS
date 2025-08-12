@@ -525,7 +525,7 @@
 70;1975;10cc;I'm Not In Love;OtBHfxU2wmc
 70;1979;ACDC;Highway To Hell;l482T0yNkeo
 70;1976;ACDC;It's A Long Way To The Top;GChhRrU6BJU
-70;1974;ACDC;Jailbreak;WHtWs4wiFCs
+70;1974;ACDC;Jailbreak;g8xScxmekQk
 70;1977;ACDC;Whole Lotta Rosie;QMvE0yFnR0I
 70;1973;Aerosmith;Dream On;9bAoq7k3tZ0
 70;1975;Aerosmith;Sweet Emotion;82cJgPXU-ik
@@ -857,7 +857,7 @@
 70;1974;Queen;Seven Seas Of Rhye;FxIo57WURRE
 70;1977;Queen;Sheer Heart Attack;rkHF_JMnB8o
 70;1976;Queen;Somebody To Love;kijpcUv-b8M
-70;1974;Queen;Stone Cold Crazy;VZRRd4bW91c
+70;1974;Queen;Stone Cold Crazy;S0kTkxhyWNo
 70;1974;Queen;Tenement Funster;0E2mjJvBKs8
 70;1976;Queen;Tie Your Mother Down;LvB2MnIIdMw
 70;1977;Queen;We Are The Champions;hSTivVclQQ0
